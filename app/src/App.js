@@ -7,7 +7,7 @@ function Auth() {
     <div className="App">
       <header className="App-header">
         <h1 class="text-center">ClickIn</h1>
-        <h2 class="text-center subheader">An online system for problem-driven learning.</h2>
+        <h2 class="text-center subheader">Open Source Attendance Tool.</h2>
                 <div class="login-methods">
                     <a class="btn btn-success w-100" href="/pl" role="button">
                       <span class="font-weight-bold">Developer by-pass</span>
