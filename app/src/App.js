@@ -6,7 +6,7 @@ function Auth() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1 class="text-center">ClickIn</h1>
+        <h1 class="text-center">smartclick</h1>
         <h2 class="text-center subheader">Open Source Attendance Tool.</h2>
                 <div class="login-methods">
                     <a class="btn btn-success w-100" href="/pl" role="button">
@@ -15,17 +15,17 @@ function Auth() {
                     <br/>
                     <a class="btn btn-illinois w-100 position-relative" href="/pl/shibcallback" role="button">
                       <img src="/images/illinois_logo.svg" class="social-icon"/>
-                      <span class="font-weight-bold">Sign in with Illinois</span>
+                      <span class="font-weight-bold">Illinois Login</span>
                     </a>
                     <br/>
                     <a class="btn btn-primary w-100 position-relative" href="/pl/oauth2login" role="button">
                       <img src="/images/google_logo.svg" class="social-icon"/>
-                      <span class="font-weight-bold">Sign in with Google</span>
+                      <span class="font-weight-bold">Google Login</span>
                     </a>
                     <br/>
                     <a class="btn btn-dark w-100 position-relative" href="/pl/azure_login" role="button">
                       <img src="/images/ms_logo.svg" class="social-icon"/>
-                      <span class="font-weight-bold">Sign in with Microsoft</span>
+                      <span class="font-weight-bold">Microsoft Login</span>
                     </a>
                     <br/>
                 </div>
