@@ -6,7 +6,7 @@ function Auth() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1 class="text-center">ClickIn</h1>
+        <h1 class="text-center">Not a Clicker</h1>
         <h2 class="text-center subheader">Open Source Attendance Tool.</h2>
                 <div class="login-methods">
                     <a class="btn btn-success w-100" href="/pl" role="button">
