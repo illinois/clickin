@@ -8,13 +8,9 @@ socketio = SocketIO(app)
 def root():
   return 'Hello World'
 
-@socketio.on('connect')
+@socketio.on('connection')
 def connect():
-  print('Client connected.')
-
-@socketio.on('disconnect')
-def disconnect():
-  print('Client disconnected.')
+  print('A user connected.')
 
 if __name__ == '__main__':
-  app.run(debug=True)
+  socketio.run(app, debug=True)
