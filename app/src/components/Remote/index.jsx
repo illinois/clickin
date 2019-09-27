@@ -2,16 +2,10 @@ import React from 'react';
 import openSocket from 'socket.io-client';
 
 export default class Remote extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      messages: []
-    };
-  }
-
   componentDidMount() {
     const socket = openSocket('http://localhost:5000');
+    socket.emit('submit', 'A');
+    console.log('Sent A');
   }
 
   render() {
