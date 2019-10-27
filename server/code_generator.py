@@ -1,6 +1,9 @@
 import random
 import string
 
+bad_words_file = open('bad_words.txt', 'r')
+BAD_WORDS_LIST = bad_words_file.read().split(' ')
+
 def generate_code(num_of_chars):
     code = ""
 
@@ -20,6 +23,4 @@ def generate_random_elems(num_of_chars):
     return code
 
 def is_valid(code):
-    bad_words_file = open('bad_words.txt', 'r')
-    bad_words_list = bad_words_file.read().split(' ')
-    return code or not bad_words_list in code
+    return code or not BAD_WORDS_LIST in code
