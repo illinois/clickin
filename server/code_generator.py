@@ -24,4 +24,11 @@ def generate_random_elems(num_of_chars):
     return code
 
 def is_valid(code):
-    return code or not BAD_WORDS_LIST in code
+    if not code:
+        return False
+
+    for bad_word in BAD_WORDS_LIST:
+        if bad_word in code:
+            return False
+
+    return True
