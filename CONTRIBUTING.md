@@ -14,7 +14,7 @@ We highly encourage you to join our [Slack channel on the UIUC OSS Slack](https:
 6. Comment on any open issue to claim it, and begin developing!
 
 ## To run on your machine
-1. Run the server using `python3 server.py`
+1. Run the backend using `python3 server.py` in the `server/` directory
 2. Run the webapp in your browser using `npm start`
 
 ## Reporting bugs and suggesting new features
