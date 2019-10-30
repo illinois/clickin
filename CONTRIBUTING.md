@@ -6,7 +6,7 @@ We highly encourage you to join our [Slack channel on the UIUC OSS Slack](https:
 
 ## To develop on your machine
 
-1. Make a fork of the repository by clickin the fork button at the top right of the page
+1. Make a fork of the repository by clicking the fork button at the top right of the page
 2. Clone the forked repository onto your local machine by running `git clone https://github.com/[YOUR GITHUB USERNAME]/clickin`
 3. If you have not already, install [Node.js](https://nodejs.org/en/download/) and [Python 3](https://www.python.org/downloads/)
 4. If developing frontend, from the repository root directory, run `npm install`
