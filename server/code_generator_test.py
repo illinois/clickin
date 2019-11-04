@@ -20,6 +20,6 @@ def test_generate_elems_returns_code_with_correct_length(code_length):
     assert len(code) == code_length
 
 def test_generate_code_returns_valid_code():
-    code_length = 4
-    code = generate_code(code_length)
+    CODE_LENGTH = 4
+    code = generate_code(CODE_LENGTH)
     assert is_valid(code)
