@@ -3,24 +3,20 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 
 export default class Student extends React.Component {
   COURSE_1 = {
-    uuid: 1,
-    name: 'CS 125',
-    hasJoined: true
+    id: 1,
+    name: 'CS 125'
   };
   COURSE_2 = {
-    uuid: 2,
-    name: 'CS 126',
-    hasJoined: true
+    id: 2,
+    name: 'CS 126'
   };
   COURSE_3 = {
-    uuid: 3,
-    name: 'CS 173',
-    hasJoined: false
+    id: 3,
+    name: 'CS 173'
   };
   COURSE_4 = {
-    uuid: 4,
-    name: 'CS 225',
-    hasJoined: true
+    id: 4,
+    name: 'CS 225'
   };
 
   constructor(props) {
@@ -43,7 +39,7 @@ export default class Student extends React.Component {
           <span>{course.name}</span>
         </Col>
         <Col className="text-center">
-          <Button variant="primary" size="lg" disabled={!course.hasJoined}>
+          <Button variant="primary" size="lg">
             Join
           </Button>
         </Col>
