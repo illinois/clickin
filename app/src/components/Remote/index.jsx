@@ -1,25 +1,35 @@
 import React from 'react';
-import openSocket from 'socket.io-client';
+import { subscribeToQuestions, generateQuestion, answerQuestion } from '../../api';
 
 export default class Remote extends React.Component {
-  componentDidMount() {
-    const socket = openSocket('http://localhost:5000');
-    this.setState({socket: socket});
- }
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      question: "Waiting for a question..."
+    };
+  }
 
-  submit(ans) {
-    this.state.socket.emit('submit', ans);
+  componentDidMount() {
+    subscribeToQuestions(question => {
+      this.setState({ question: question });
+    });
   }
 
   render() {
     return (
       <div className="Remote">
+        <button onClick={generateQuestion}>Generate a question!</button>
+        <br />
+        <br />
+
+        <div>{this.state.question}</div>
         <div>
-          <button onClick={() => this.submit('A')} >A</button>
-          <button onClick={() => this.submit('B')} >B</button>
-          <button onClick={() => this.submit('C')} >C</button>
-          <button onClick={() => this.submit('D')} >D</button>
-          <button onClick={() => this.submit('E')} >E</button>
+          <button onClick={() => answerQuestion('A')} >A</button>
+          <button onClick={() => answerQuestion('B')} >B</button>
+          <button onClick={() => answerQuestion('C')} >C</button>
+          <button onClick={() => answerQuestion('D')} >D</button>
+          <button onClick={() => answerQuestion('E')} >E</button>
         </div>
       </div>
     );
