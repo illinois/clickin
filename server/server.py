@@ -1,20 +1,24 @@
 from flask import Flask
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins='*')
 
-@app.route('/')
-def root():
-  return 'Hello World'
+@socketio.on('join')
+def join():
+  print('Someone new just joined!')
 
-@app.route('/susan')
-def susan():
-  return 'susan does not deserve to be sick also shes cool'
+@socketio.on('generate')
+def generate_question():
+  emit('question', 'What\'s the first letter of Brian\'s name?')
 
-@socketio.on('submit')
-def handle_submit(ans):
-  print(f'Submitted {ans}')
+@socketio.on('answer')
+def check_answer(ans):
+  print(f'Answer: {ans}')
+  if ans == 'B':
+    print('Correct!')
+  else:
+    print('Incorrect!')
 
 if __name__ == '__main__':
   socketio.run(app, debug=True)
