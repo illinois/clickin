@@ -1,7 +1,7 @@
 import random
 import string
 
-bad_words_file = open('server/bad_words.txt', 'r')
+bad_words_file = open('./bad_words.txt', 'r')
 BAD_WORDS_LIST = bad_words_file.read().split('\n')
 bad_words_file.close()
 
@@ -24,7 +24,6 @@ def generate_random_elems(num_of_chars):
     return code
 
 def is_valid(code):
-
     for bad_word in BAD_WORDS_LIST:
         if bad_word in code.lower():
             return False

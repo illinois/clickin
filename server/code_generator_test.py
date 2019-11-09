@@ -2,10 +2,6 @@ from code_generator import generate_code, generate_random_elems, is_valid
 from random import randint
 import pytest
 
-def test_is_valid_returns_false_for_empty_input():
-    code_input = ''
-    assert is_valid(code_input) == False
-
 @pytest.mark.parametrize(('code_input'), [('aSS'), ('ass'), ('12ass'), ('12Ass'), ('ass12'), ('Ass21')])
 def test_is_valid_returns_false_for_invalid_input(code_input):
     assert is_valid(code_input) == False
