@@ -3,23 +3,23 @@ from flask_dance.contrib.google import make_google_blueprint, google
 from google.oauth2 import id_token
 from google.auth.transport import requests
 
-# (Receive token by HTTPS POST)
-# ...
+app = Flask(__name__)
+app.config['SECRET_KEY'] = 'secret'
 
-try:
-    idinfo = id_token.verify_oauth2_token(token, requests.Request())
-    if idinfo['aud'] not in [CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3]:
-        raise ValueError('Could not verify audience.')
+google_blueprint = make_google_blueprint(client_id = '', client_secret='', hosted_domain='http://clicc.in')
 
-    if idinfo['iss'] not in ['accounts.google.com', 'https://accounts.google.com']:
-        raise ValueError('Wrong issuer.')
+app.register_blueprint(google_blueprint, url_prefix='/google_auth')
 
-    # If auth request is from a G Suite domain:
-    if idinfo['hd'] != GSUITE_DOMAIN_NAME:
-        raise ValueError('Wrong hosted domain.')
+@app.route('/auth')
+def twitter_login():
+    if not google.authorized:
+        return redirect(url_for('google.login'))
+    account_info = google.get('')
 
-    # ID token is valid. Get the user's Google Account ID from the decoded token.
-    userid = idinfo['sub']
-except ValueError:
-    # Invalid token
-    pass
+    if account_info.ok:
+        return account_info
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+# vim: tabstop=8 expandtab shiftwidth=4 softtabstop=4
