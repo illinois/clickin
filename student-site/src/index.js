@@ -1,9 +1,11 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import Remote from 'components/Remote';
+import Remote from './components/Remote';
+import './index.css';
 
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
@@ -12,3 +14,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+ReactDOM.render(<App />, document.getElementById('root'));
