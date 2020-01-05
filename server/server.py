@@ -27,4 +27,4 @@ def answer_question(answer):
   emit('answer', answer, room=instructor)
 
 if __name__ == '__main__':
-  socketio.run(app, debug=True)
+  socketio.run(app, debug=True, log_output=False)
