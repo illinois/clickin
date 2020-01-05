@@ -21,4 +21,4 @@ def check_answer(ans):
     print('Incorrect!')
 
 if __name__ == '__main__':
-  socketio.run(app, debug=True)
+  socketio.run(app, debug=True, log_output=False)
