@@ -6,12 +6,10 @@ BAD_WORDS_LIST = bad_words_file.read().split('\n')
 bad_words_file.close()
 
 def generate_code(num_of_chars):
-    code = ''
-
-    while not is_valid(code):
+    while True:
         code = generate_random_elems(num_of_chars)
-
-    return code
+        if is_valid(code):
+            return code
 
 def generate_random_elems(num_of_chars):
     POSSIBLE_CHARS = string.ascii_letters + string.digits
@@ -27,5 +25,4 @@ def is_valid(code):
     for bad_word in BAD_WORDS_LIST:
         if bad_word in code.lower():
             return False
-
     return True
