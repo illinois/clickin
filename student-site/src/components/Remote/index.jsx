@@ -1,36 +1,50 @@
 import React from 'react';
-import { subscribeToQuestions, answerQuestion } from '../../api';
+
+import {
+  joinClass,
+  answerQuestion
+} from '../../api';
 
 export default class Remote extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      question: 'Waiting for a question...',
-      disabled: true
+      code: props.match.params.code,
+      received: false
     };
   }
 
   componentDidMount() {
-    subscribeToQuestions(question => {
-      console.log("QUESTION!");
-      this.setState({ question, disabled: false });
+    const { code } = this.state;
+    joinClass(code);
+  }
+
+  click = answer => {
+    answerQuestion(answer, () => {
+      this.setState({ received: true });
     });
   }
 
   render() {
-    const answers = ['A', 'B', 'C', 'D', 'E'];
+    const { code, received } = this.state;
 
-    const buttons = answers.map(answer => (
-      <button onClick={() => answerQuestion(answer)} disabled={this.state.disabled}>
+    const buttons = ['A', 'B', 'C', 'D', 'E'].map(answer => (
+      <button key={answer} onClick={() => this.click(answer)}>
         {answer}
       </button>
     ));
 
     return (
       <div className="Remote">
-        {this.state.question}
-        <div>{buttons}</div>
+        <div>
+          Code: {code}
+        </div>
+
+        <div>
+          {buttons}
+          {received && ' 👍'}
+        </div>
       </div>
     );
   }

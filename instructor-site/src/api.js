@@ -1,12 +1,20 @@
-import openSocket from 'socket.io-client';
+import io from 'socket.io-client';
 
-const socket = openSocket('http://localhost:5000');
+const server = 'ws://localhost:5000/instructor';
+const socket = io.connect(server, { transports: ['websocket'] });
 
-export function subscribeToAnswers(callback) {
-  socket.emit('instructor-join');
+export function joinClass(callback) {
+  socket.emit('join', code => callback(code));
+}
+
+export function startQuestion() {
+  socket.emit('start');
+}
+
+export function listenForAnswers(callback) {
   socket.on('answer', answer => callback(answer));
 }
 
-export function askQuestion(question) {
-  socket.emit('ask', question);
-} 
+export function stopQuestion() {
+  socket.emit('stop');
+}

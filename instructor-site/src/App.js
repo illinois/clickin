@@ -1,44 +1,59 @@
 import React from 'react';
-import { subscribeToAnswers, askQuestion } from './api';
+import {
+  joinClass,
+  startQuestion,
+  listenForAnswers,
+  stopQuestion
+} from './api';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      question: 'What is 2+2?',
+      code: '',
       answers: []
     };
   }
 
   componentDidMount() {
-    subscribeToAnswers(answer => {
+    joinClass(code => {
+      this.setState({ code });
+    });
+
+    listenForAnswers(answer => {
+      answer = { id: 'bts2', text: answer };
       this.setState({ answers: [...this.state.answers, answer] });
     });
   }
 
-  handleSubmit = event => {
-    event.preventDefault();
-    askQuestion(this.state.question);
-    this.setState({ answers: [] });
-  }
+  toggle = () => {
+    const { isActive } = this.state;
 
-  handleChange = event => {
-    const question = event.target.value;
-    this.setState({ question });
+    if (isActive) {
+      stopQuestion();
+    } else {
+      startQuestion();
+      this.setState({ answers: [] });
+    }
+
+    this.setState({ isActive: !isActive });
   }
 
   render() {
-    const answers = this.state.answers.map(answer => <li>{answer}</li>);
+    let { code, isActive, answers } = this.state;
 
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.question} onChange={this.handleChange} />
-          <input type="submit" value="Ask" />
-        </form>
+        <div>
+          Code: {code}
+        </div>
 
-        <ul>{answers}</ul>
+        <button onClick={this.toggle}>{isActive ? 'Stop' : 'Start'}</button>
+
+        <ul>
+          {answers.map((answer, i) => <li key={i}>{answer.id}: {answer.text}</li>)}
+        </ul>
       </div>
     );
   }
