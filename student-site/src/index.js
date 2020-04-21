@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 import Remote from './components/Remote';
+import Student from './components/Student';
+
 import './index.css';
 
 class App extends React.Component {
@@ -10,6 +12,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Route exact path="/" component={Remote} />
+        <Route exact path="/student" component={Student} />
       </BrowserRouter>
     );
   }

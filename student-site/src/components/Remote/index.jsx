@@ -4,7 +4,7 @@ import { subscribeToQuestions, answerQuestion } from '../../api';
 export default class Remote extends React.Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       question: 'Waiting for a question...',
       disabled: true
@@ -13,6 +13,7 @@ export default class Remote extends React.Component {
 
   componentDidMount() {
     subscribeToQuestions(question => {
+      console.log("QUESTION!");
       this.setState({ question, disabled: false });
     });
   }
