@@ -1,37 +1,31 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { subscribeToQuestions, generateQuestion, answerQuestion } from '../../api';
 
-export default class Remote extends React.Component {
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      question: "Waiting for a question..."
-    };
-  }
+function Remote (props) {
+  const [question, setQuestion] = useState(<span className="loading">Waiting for a question</span>);
 
-  componentDidMount() {
-    subscribeToQuestions(question => {
-      this.setState({ question: question });
-    });
-  }
+  useEffect(() => {
+    subscribeToQuestions((question) => setQuestion(question));
+  }, [props]);
 
-  render() {
-    return (
-      <div className="Remote">
-        <button onClick={generateQuestion}>Generate a question!</button>
-        <br />
-        <br />
+  return (
+    <div className="remote">
+      <button onClick={generateQuestion}>Generate a question!</button>
+      <br />
+      <br />
 
-        <div>{this.state.question}</div>
-        <div>
-          <button onClick={() => answerQuestion('A')} >A</button>
-          <button onClick={() => answerQuestion('B')} >B</button>
-          <button onClick={() => answerQuestion('C')} >C</button>
-          <button onClick={() => answerQuestion('D')} >D</button>
-          <button onClick={() => answerQuestion('E')} >E</button>
-        </div>
+      <div>{question}</div>
+      <br />
+
+      <div>
+        <button onClick={() => answerQuestion('A')} >A</button>
+        <button onClick={() => answerQuestion('B')} >B</button>
+        <button onClick={() => answerQuestion('C')} >C</button>
+        <button onClick={() => answerQuestion('D')} >D</button>
+        <button onClick={() => answerQuestion('E')} >E</button>
       </div>
-    );
-  }
+    </div>
+  );
 }
+
+export default Remote;
