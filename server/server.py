@@ -1,24 +1,30 @@
-from flask import Flask
+from flask import Flask, request
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
 socketio = SocketIO(app, cors_allowed_origins='*')
 
-@socketio.on('join')
-def join():
-  print('Someone new just joined!')
+instructor = None
 
-@socketio.on('generate')
-def generate_question():
-  emit('question', 'What\'s the first letter of Brian\'s name?')
+@socketio.on('instructor-join')
+def instructor_join():
+  print('The instructor joined!')
+  global instructor
+  instructor = request.sid
+
+@socketio.on('student-join')
+def student_join():
+  print('A student joined!')
+
+@socketio.on('ask')
+def ask_question(question):
+  print(f'Received question: {question}')
+  emit('question', question, broadcast=True)
 
 @socketio.on('answer')
-def check_answer(ans):
-  print(f'Answer: {ans}')
-  if ans == 'B':
-    print('Correct!')
-  else:
-    print('Incorrect!')
+def answer_question(answer):
+  print(f'Received answer: {answer}')
+  emit('answer', answer, room=instructor)
 
 if __name__ == '__main__':
   socketio.run(app, debug=True)

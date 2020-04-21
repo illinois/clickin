@@ -1,10 +1,13 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-import Remote from 'components/Remote';
-import Student from 'components/Student';
+import Remote from './components/Remote';
+import Student from './components/Student';
 
-export default class App extends React.Component {
+import './index.css';
+
+class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
@@ -14,3 +17,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+ReactDOM.render(<App />, document.getElementById('root'));
