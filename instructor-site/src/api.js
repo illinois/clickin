@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 
 const server = 'ws://localhost:5000/instructor';
-const socket = io.connect(server, { transports: ['websocket'] });
+const socket = io.connect(server);
 
 export function joinClass(callback) {
   socket.emit('join', code => callback(code));

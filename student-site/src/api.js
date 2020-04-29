@@ -1,7 +1,7 @@
 import io from 'socket.io-client';
 
 const server = 'ws://localhost:5000/student';
-const socket = io.connect(server, { transports: ['websocket'] });
+const socket = io.connect(server);
 
 export function getCodes() {
   return fetch('/codes')
