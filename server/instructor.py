@@ -1,6 +1,6 @@
 from flask import session
 from flask_socketio import emit, join_room, leave_room, Namespace
-from code_generator import generate_code
+from utils.code_generator import generate_code
 
 class Instructor(Namespace):
   def on_join(self):
