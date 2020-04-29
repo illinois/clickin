@@ -1,7 +1,5 @@
 from flask import session
-from flask_socketio import Namespace
-from flask_socketio import join_room, leave_room
-from flask_socketio import emit
+from flask_socketio import Namespace, join_room, emit
 
 class Student(Namespace):
   def on_join(self, code):
