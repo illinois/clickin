@@ -43,7 +43,7 @@ export default class Remote extends React.Component {
 
         <div>
           {buttons}
-          {received && ' 👍'}
+          {received && ' OK'}
         </div>
       </div>
     );

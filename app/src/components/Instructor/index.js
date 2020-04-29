@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  joinClass,
-  startQuestion,
+  beginClass,
   listenForAnswers,
+  startQuestion,
   stopQuestion
-} from './api';
+} from '../../api';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -17,7 +17,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    joinClass(code => {
+    beginClass(code => {
       this.setState({ code });
     });
 
