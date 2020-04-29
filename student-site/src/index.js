@@ -2,13 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route } from 'react-router-dom';
 
-<<<<<<< HEAD
 import Auth from './components/Auth';
 import Remote from './components/Remote';
-=======
-import Remote from './components/Remote';
-import Student from './components/Student';
->>>>>>> master
 
 import './index.css';
 
