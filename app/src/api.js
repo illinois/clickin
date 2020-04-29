@@ -1,8 +1,10 @@
 import io from 'socket.io-client';
 
+const URL = process.env.REACT_APP_SERVER;
+
 // Student Socket.io Endpoints
 
-const student = io.connect('ws://localhost:5000/student');
+const student = io.connect(`ws://${URL}/student`);
 
 export function joinClass(code) {
   student.emit('join', code);
@@ -14,7 +16,7 @@ export function answerQuestion(answer, callback) {
 
 // Instructor Socket.io Endpoints
 
-const instructor = io.connect('ws://localhost:5000/instructor');
+const instructor = io.connect(`ws://${URL}/instructor`);
 
 export function beginClass(callback) {
   instructor.emit('join', code => callback(code));
